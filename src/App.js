@@ -25,6 +25,13 @@ function App() {
     setAmount(e.target.value);
   };
 
+  const handleAlert = ({ type, text }) => {
+    setAlert({ show: true, type, text });
+    setTimeout(() => {
+      setAlert({ show: false });
+    }, 3000);
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
     if (charge !== '' && amount > 0) {
@@ -32,7 +39,12 @@ function App() {
       setExpenses([...expenses, singleExpense]);
       setCharge('');
       setAmount('');
+      handleAlert({ type: 'success', text: 'item added' });
     } else {
+      handleAlert({
+        type: 'danger',
+        text: `charge can't be empty value and amount value has to be bigger than 0 `
+      });
     }
   };
 
