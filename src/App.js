@@ -15,6 +15,7 @@ function App() {
   const [expenses, setExpenses] = useState(initialExpenses);
   const [charge, setCharge] = useState('');
   const [amount, setAmount] = useState('');
+  const [alert, setAlert] = useState({ show: false });
 
   const handleCharge = e => {
     setCharge(e.target.value);
@@ -32,13 +33,12 @@ function App() {
       setCharge('');
       setAmount('');
     } else {
-      // handle alert
     }
   };
 
   return (
     <>
-      <Alert />
+      {alert.show && <Alert type={alert.type} text={alert.text} />}
       <h1>Budget calculator</h1>
       <main className='App'>
         <ExpenseForm
